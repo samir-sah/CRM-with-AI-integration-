@@ -1,10 +1,11 @@
+import jwt from "jsonwebtoken";
 import {User} from "../models/User.js";
 import { asyncHandler } from "../utils/asyncHandler.js";
 import { ApiError } from "../utils/ApiError.js";
 
 export const protect = asyncHandler(async (req, res ,next) => {
     let token;
-    const header = req.header.authorization;
+    const header = req.headers.authorization;
 
     if(header && header.startsWith("Bearer ")) {
         token = header.split(" ")[1];
