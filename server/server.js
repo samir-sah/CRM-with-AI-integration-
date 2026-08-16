@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 
 import { connectDB } from "./config/db.js";
 import { notFound, errorHandler } from "./middleware/error.middleware.js";
+import authRoutes from "./routes/auth.route.js"
 
 dotenv.config();
 const app = express();
@@ -28,6 +29,7 @@ app.get("/api/health", (req,res)=>
     res.json({success: true, status: "ok", service:"TTP CRM API"})
 );
 
+app.use("/api/auth", authRoutes);
 
 //      Error Handling (comes at last)
 
